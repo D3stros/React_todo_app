@@ -2,15 +2,17 @@ import React from 'react';
 import Todo from './Todo';
 
 const todos = [
-	{ description: 'Shopping', done: false },
+	{ description: 'Shopping', done: true },
 	{ description: 'Sport', done: false },
 	{ description: 'Programming', done: false },
 ];
 
 const TodoList = () => {
 	return (
-		<div>
-			<h1>Our todos</h1>
+		<div className='shadow-sm hover:shadow-lg'>
+			<div className='text-center bg-gray-900 text-white text-3xl py-4 font-semibold'>
+				<h1>Our todos</h1>
+			</div>
 			{todos.map((item, index) => {
 				return (
 					<Todo
