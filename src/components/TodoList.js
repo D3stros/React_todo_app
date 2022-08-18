@@ -2,15 +2,9 @@ import React from 'react';
 import Todo from './Todo';
 import { useState, useEffect } from 'react';
 
-const alltodos = [
-	{ description: 'Shopping', done: true },
-	{ description: 'Sport', done: false },
-	{ description: 'Programming', done: false },
-];
-
 const TodoList = () => {
 	const [opencount, countOpenTodos] = useState(0);
-	const [todos, setTodos] = useState(alltodos);
+	const [todos, setTodos] = useState([]);
 	const [textinput, settextinput] = useState('');
 
 	const changeText = (e) => {
