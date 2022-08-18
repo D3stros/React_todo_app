@@ -11,9 +11,15 @@ const TodoList = () => {
 	return (
 		<div>
 			<h1>Our todos</h1>
-			<Todo></Todo>
-			<Todo></Todo>
-			<Todo></Todo>
+			{todos.map((item, index) => {
+				return (
+					<Todo
+						description={item.description}
+						done={item.done}
+						key={index}
+					></Todo>
+				);
+			})}
 		</div>
 	);
 };
