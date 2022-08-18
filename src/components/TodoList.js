@@ -2,7 +2,7 @@ import React from 'react';
 import Todo from './Todo';
 import { useState, useEffect } from 'react';
 
-const todos = [
+const alltodos = [
 	{ description: 'Shopping', done: true },
 	{ description: 'Sport', done: false },
 	{ description: 'Programming', done: false },
@@ -10,6 +10,7 @@ const todos = [
 
 const TodoList = () => {
 	const [opencount, countOpenTodos] = useState(0);
+	const [todos, setTodos] = useState(alltodos);
 
 	const countOpen = () => {
 		const donetodos = todos.filter((item) => {
@@ -18,9 +19,25 @@ const TodoList = () => {
 		countOpenTodos(donetodos.length);
 	};
 
+	const changeTodo = (index) => {
+		const newTodos = [...todos];
+		if (newTodos[index].done) {
+			newTodos[index].done = false;
+		} else {
+			newTodos[index].done = true;
+		}
+		setTodos(newTodos);
+	};
+
+	const deleteTodo = (index) => {
+		const newTodos = [...todos];
+		newTodos.splice(index, 1);
+		setTodos(newTodos);
+	};
+
 	useEffect(() => {
 		countOpen();
-	}, [opencount]);
+	}, [todos]);
 
 	return (
 		<div className='shadow-sm hover:shadow-lg'>
@@ -34,6 +51,9 @@ const TodoList = () => {
 						description={item.description}
 						done={item.done}
 						key={index}
+						index={index}
+						onChangeTodo={changeTodo}
+						onDeleteTodo={deleteTodo}
 					></Todo>
 				);
 			})}
